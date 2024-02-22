@@ -74,5 +74,5 @@ for row,d in enumerate(mazecpy):
             mazecpy[row][col] = 'O'
         
 
-for row in mazecpy:
-    print(row)
+for rows in mazecpy:
+    print(rows)
