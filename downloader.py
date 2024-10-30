@@ -3,55 +3,6 @@ from bs4 import BeautifulSoup as bs
 from fake_useragent import UserAgent
 ua = UserAgent()
 
-#jimi-hendrix/voodoo-child-slight-return'
-#class </svg>
-inp = input('Do you want to find tempo of a song?(Y/N)').lower()
-if inp == 'y':
-    def find_tempo(input_list):
-        for elements in input_list:
-            try:
-                int(elements)
-                return elements
-            except:
-                pass
-
-    def optional(num):
-        return [int(num)*2,int(num)/2]
-
-
-    main_url = 'https://songbpm.com/'
-    artist = input('Enter an arist')
-    song = input('Enter a song by them')
-    parse = []
-    parse.append(artist)
-    parse.append(song)
-    for i in range(len(parse)): 
-        parse[i] = parse[i].replace(' ','-')
-
-
-    url = f'{main_url}{parse[0]}/{parse[1]}'
-    header = {'User-Agent':str(ua.chrome)}
-    try:
-    #creates a requrst object with headers=allows for header formatting custom
-        re = urllib.request.Request(url,headers=header)
-        con = urllib.request.urlopen(re)
-        data = con.read().decode()
-    #parse the data
-        soup = bs(data,'html.parser')
-    #find where the tempo is
-        final = soup.find_all(string=True)
-    #key
-        final2 = soup.find(class_='mt-1 text-3xl font-semibold text-gray-900')
-        key = final2.text
-        tempo = find_tempo(final)
-        other = optional(tempo)
-
-        print(f'The Tempo for {song} by {artist} is {tempo} beats per minute or {other[0]} and {other[1]}\nIt is in the key of {key}')
-
-    except:
-        print('HTTP Response Error')
-
-
 from selenium import webdriver
 import time
 
@@ -126,10 +77,7 @@ def download_and_convert_to_audio(video_url, output_path,titles):
 output_path = os.path.join(os.path.expanduser("~"), "Music",)
 download_and_convert_to_audio(video_url_list,output_path, video_title_list)
 
-#using youtube_dl but dont have to use this
-#import youtube_dl
 
-#using youtube_dl
 
 def download(url_list):
     output_path = os.path.join(os.path.expanduser("~"), "Music", "%(title)s.%(ext)s")
@@ -141,4 +89,4 @@ def download(url_list):
     ydl = youtube_dl.YoutubeDL(ydl_opts)
     ydl.download(url_list)
 
-#download(video_url_list)
+download(video_url_list)
