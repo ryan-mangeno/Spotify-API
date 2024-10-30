@@ -14,14 +14,13 @@ with open("songs.txt", "r") as file:
     for line in file:
         video_requests.append(line)
 
-# Set up the Chrome driver (you can use other browsers as well)
 driver = webdriver.Chrome()
 for video_request in video_requests:
     try:
-    #Navigate to the YouTube search page
+    #navigating to the YouTube search page
         driver.get(f'https://www.youtube.com/results?search_query={video_request}')
         time.sleep(5)
-    # Get the page source (fully rendered content)
+    # Get the page source 
         page_source = driver.page_source
 
         soup = bs(page_source, 'html.parser')
@@ -63,7 +62,6 @@ def download_and_convert_to_audio(video_url, output_path,titles):
 
             if song_search in os.listdir(output_path):
                 continue
-            # Download the YouTube video
 
             yt = YouTube(url)
             stream = yt.streams.filter(only_audio=False, file_extension='mp4').first()
