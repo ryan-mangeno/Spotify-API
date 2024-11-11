@@ -17,10 +17,11 @@ with open("songs.txt", "r") as file:
 driver = webdriver.Chrome()
 for video_request in video_requests:
     try:
-    #navigating to the YouTube search page
+        #navigating to the YouTube search page
         driver.get(f'https://www.youtube.com/results?search_query={video_request}')
         time.sleep(5)
-    # Get the page source 
+        
+        # Get the page source 
         page_source = driver.page_source
 
         soup = bs(page_source, 'html.parser')
@@ -28,18 +29,17 @@ for video_request in video_requests:
         for video_title_element in video_title_elements:
             # Extract the title
             title = video_title_element.get('title', '')
+            
             # Extract the video URL doing 'href','', '' serves as a default is none type is found
             video_url = 'https://www.youtube.com' + video_title_element.get('href', '')
 
             # this acts as another error check, if a non type is found an is defaulted to '', then 'watch' wouldnt be in the .get
             if title and 'watch' in video_title_element.get('href', ''):
-                print(video_url,'\n', title)
                 sub_video_list = video_url.split('&')
-                print(f"Title: {title}")
-                print(f"Video URL: {sub_video_list[0]}")
                 video_title_list.append(title)
                 video_url_list.append(sub_video_list[0])
                 break
+                
     except Exception as e:
         print(f'Error: {e}')
 
