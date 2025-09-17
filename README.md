@@ -20,7 +20,7 @@
 
    ```
 - Env Variables:
-  You will need to set you vars based on your spotify developer account available (here)[https://developer.spotify.com/documentation/web-api/tutorials/getting-started]
+  You will need to set you vars based on your spotify developer account, instructions available [here](https://developer.spotify.com/documentation/web-api/tutorials/getting-started)
   ```
   SPOTIFY_SECRET
   SPOTIFY_CLIENT_ID
